@@ -1,9 +1,10 @@
-import EnumOrganization.Organization;
-import EnumOrganization.Status;
+package AppWorker;
 
+import AppWorker.EnumOrganization.Organization;
+import AppWorker.EnumOrganization.Status;
 
-import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -24,21 +25,27 @@ public class Worker implements Comparable<Worker>{
 
     }
     public long getId() {
+
         return id;
     }
     public String getName(){
+
         return name;
     }
     public int getAge(){
+
         return age;
     }
     public Status getStatus() {
+
         return status;
     }
     public Organization getOrganization() {
+
         return organization;
     }
     private float getSalary() {
+
         return salary;
     }
     @Override
@@ -62,12 +69,13 @@ public class Worker implements Comparable<Worker>{
         if (o == null || getClass() != o.getClass())
             return false;
         Worker worker = (Worker) o;
-        return age == worker.age && (name == null ? worker.name == null : name.equals(worker.name));
+        return age == worker.age &&
+                Objects.equals(name, worker.name);
     }
     @Override
     public int hashCode() {
 
-        return age + name.hashCode();
+        return 31 * age + name.hashCode();
     }
 
     public static float sumOfSalary(HashSet<Worker> workersSet) {  // Метод для вычисления суммы зарплат всех работников
@@ -100,6 +108,7 @@ public class Worker implements Comparable<Worker>{
 
     @Override
     public int compareTo(Worker otherWorker) {
+
         return this.name.compareTo(otherWorker.getName());
     }
 

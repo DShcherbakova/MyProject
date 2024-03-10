@@ -1,5 +1,5 @@
-package MyProject;
-public class Info implements AppInformation {
+package AppWorker.Information1;
+public class Info implements AppInformation{
 
     @Override
     public void workerHello() {           // Переопределённый метод workerHello выводит информацию о доступных действиях пользователя
@@ -12,7 +12,7 @@ public class Info implements AppInformation {
     public void workerInfo() {              // Переопределённый метод workerInfo выводит информацию о коллекции
         System.out.println("Тип: Коллекция работников");
         System.out.println("Дата инициализации: " + "..."); // Текущая дата
-        System.out.println("Количество элементов: " + "workers.size()");
+        System.out.println("Количество элементов: " + "...");
     }
 
     @Override

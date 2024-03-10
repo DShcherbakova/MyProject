@@ -1,4 +1,4 @@
-package MyProject;
+package AppWorker.Information1;
 
 public interface AppInformation {  // Интерфейс AppInformation
     void workerHello();  // Метод, который необходимо переопределить в классе Info

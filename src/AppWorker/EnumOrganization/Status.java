@@ -1,4 +1,4 @@
-package EnumOrganization;
+package AppWorker.EnumOrganization;
 
 public enum Status {
     FIRED,

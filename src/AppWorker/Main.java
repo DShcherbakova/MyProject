@@ -1,6 +1,6 @@
+package AppWorker;
+
 import java.util.HashSet;
-import MyProject.Info;
-import MyProject.AppInformation;
 
 public class Main {
     public static void main(String[] args) {
