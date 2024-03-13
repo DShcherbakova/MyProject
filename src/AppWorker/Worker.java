@@ -3,9 +3,12 @@ package AppWorker;
 import AppWorker.EnumOrganization.Organization;
 import AppWorker.EnumOrganization.Status;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.HashSet;
+
+
+
 
 
 public class Worker implements Comparable<Worker>{
@@ -17,7 +20,7 @@ public class Worker implements Comparable<Worker>{
     private Status status; //Поле может быть null
     private Organization organization;
 
-    public Worker(String name, int age, Float salary) {
+    public Worker(String name, int age, float salary) {
         this.id = nextId++;  // Присваиваем текущее значение nextId и затем увеличиваем его на 1
         this.name = name;
         this.age = age;
@@ -28,6 +31,10 @@ public class Worker implements Comparable<Worker>{
 
         return id;
     }
+    public void setId(int id) {
+
+        this.id = id;
+    }
     public String getName(){
 
         return name;
@@ -36,15 +43,42 @@ public class Worker implements Comparable<Worker>{
 
         return age;
     }
+    public void setAge(int age) {
+        if (age >= 18 && age <= 65) { // Проверка возраста на допустимый диапазон
+            this.age = age;
+        } else {
+            System.out.println("Недопустимый возраст");
+        }
+    }
+
     public Status getStatus() {
 
         return status;
     }
+    /*public void setStatus(String status) {
+        if (status != null && !status.isEmpty()) { // Проверка статуса на непустое значение
+                                                   // Это условие проверяет, что значение переменной status не является пустой строкой
+            this.status = Status.valueOf(status);  // Преобразования строки status в соответствующий объект типа Status
+        } else {
+            System.out.println("Статус не может быть пустым");
+        }
+    }
+
+     */
+    /*public void setSalary(float salary) {
+        if (salary >= 0) {                // Проверка зарплаты на неотрицательное значение
+            this.salary = salary;
+        } else {
+            System.out.println("Зарплата не может быть отрицательной");
+        }
+    }
+
+     */
     public Organization getOrganization() {
 
         return organization;
     }
-    private float getSalary() {
+    public float getSalary() {
 
         return salary;
     }
@@ -96,14 +130,42 @@ public class Worker implements Comparable<Worker>{
         int age = scanner.nextInt();
 
         System.out.println("Введите зарплату нового работника: ");
-        float salary = Float.parseFloat(scanner.nextLine());  //метод для получения значения зарплаты
+        float salary = scanner.nextFloat();  //метод для получения значения зарплаты
 
         workersSet.add(new Worker(name, age, salary));
         System.out.println("Новый работник добавлен в коллекцию работников.");
     }
-    public static void clearWorker(HashSet<Worker> workersSet) {   // Метод для очистки коллекции
-        workersSet.clear();
-        System.out.println("Коллекция очищена.");
+    /*public static void clearWorker(HashSet<Worker> workersSet) {  // Метод для очистки коллекции
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Вы уверены, что хотите очистить всю коллекцию? (да/нет)");
+        System.out.println("Ваш ответ: ");
+        String answer = scanner.nextLine();
+        if (answer.equalsIgnoreCase("да")) {  // Метод строки, который сравнивает содержимое строки answer
+                                              // с заданной строкой "да", игнорируя регистр символов
+            workersSet.clear();
+            System.out.println("Коллекция очищена.");
+        } else {
+            System.out.println("Очистка коллекции отменена.");
+        }
+    }
+
+     */
+    public static void clearWorker(HashSet<Worker> workersSet){   // Метод для очистки коллекции
+        Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.println("Вы уверены, что хотите очистить всю коллекцию? [да/нет]");
+            System.out.println("Ваш ответ: ");
+            String answer = scanner.nextLine();
+            if (answer.equalsIgnoreCase("да")) {  // Метод строки, который сравнивает содержимое строки answer
+                                                              // с заданной строкой "да", игнорируя регистр символов
+                workersSet.clear();      //Метод очистки коллекции работников
+                System.out.println("Коллекция очищена.");
+                break;
+            } else if (answer.equalsIgnoreCase("нет")){
+                System.out.println("Очистка коллекции отменена.");
+                break;
+            }
+        } while (true);
     }
 
     @Override
@@ -112,4 +174,19 @@ public class Worker implements Comparable<Worker>{
         return this.name.compareTo(otherWorker.getName());
     }
 
+    /* public static void removeLower(HashSet<Worker> workersSet, float fieldValue) {
+        int countRemoved = 0;               // Счетчик удаленных элементов
+
+        HashSet<Worker> toRemove = new HashSet<>();  // Создаем временную коллекцию
+
+        for (Worker worker : workersSet) {  // Проходим по каждому работнику в коллекции
+                                            // Сравнение значения зарплаты с заданным значением fieldValue
+            if (worker.getSalary() < fieldValue) {  // Если зарплата меньше, добавляем работника в коллекцию на удаление
+                toRemove.add(worker);
+                countRemoved++;             // Увеличиваем счетчик удаленных элементов
+            }
+        }
+    }
+
+     */
 }

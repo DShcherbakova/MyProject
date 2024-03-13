@@ -1,4 +1,5 @@
 package AppWorker.Information1;
+
 public class Info implements AppInformation{
 
     @Override
@@ -11,8 +12,7 @@ public class Info implements AppInformation{
     @Override
     public void workerInfo() {              // Переопределённый метод workerInfo выводит информацию о коллекции
         System.out.println("Тип: Коллекция работников");
-        System.out.println("Дата инициализации: " + "..."); // Текущая дата
-        System.out.println("Количество элементов: " + "...");
+        System.out.println("Количество элементов: ");
     }
 
     @Override
